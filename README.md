@@ -13,13 +13,13 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 
-NITE MODE is an open source django based application that converts your files to DARK MODE
+NITE MODE is an open source Flask based application that converts your files to DARK MODE
 
 - FAST
 - Reliable
 - Open Source
 
-Visit: https://nitemode.herokuapp.com/
+Visit: <a href = 'https://thechawla225.pythonanywhere.com'> Nite Mode <a>
 
 
 <h1 align = 'center'> Features 💡 </h1>
@@ -36,15 +36,16 @@ Visit: https://nitemode.herokuapp.com/
 Nite Mode uses a number of open source projects to work properly:
 
 <ul>
-  <li><a href = 'https://github.com/django/django'> Django <a> </li>
+  <li><a href = 'https://github.com/pallets/flask'> Flask <a> </li>
   <li><a href = 'https://github.com/scanny/python-pptx'> Python-pptx <a> </li>
   <li><a href = 'https://github.com/pankajr141/pdf2jpg'> pdf2jpg <a> </li>
   <li><a href = 'https://github.com/josch/img2pdf'> img2pdf <a> </li>
+  <li><a href = 'https://github.com/sfneal/PyPDF3'> PyPDF3 <a> </li>
 </ul>
     
 <br>
 
-<h1 align = 'center'> 🔨 Development 🔨</h1>
+<h1 align = 'center'> 🔨 Development</h1>
 
 Want to contribute? Great!
 
@@ -58,7 +59,7 @@ pip install -r requirements.txt
 Then go to the project directory containing 'manage.py', open cmd and:
 
 ```sh
-python manage.py runserver
+python app.py 
 ```
 
 <br>
