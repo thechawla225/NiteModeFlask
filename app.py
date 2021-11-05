@@ -4,7 +4,7 @@ import os
 import DarkModePdf
 from PyPDF3 import PdfFileMerger
 import shutil
-
+import git
 
 app = Flask(__name__)
 uploadsPath = '/home/thechawla225/mysite/uploads/'
@@ -48,6 +48,18 @@ def upload_file():
         if not os.path.exists(uploadsPath):
             os.makedirs(uploadsPath)
         return send_file(path_to_file)
+
+
+@app.route('/update_server', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('https://github.com/thechawla225/NiteModeFlask')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'Updated PythonAnywhere successfully', 200
+
+    else:
+        return 'Wrong event type', 400
 
 
 if __name__ == '__main__':
