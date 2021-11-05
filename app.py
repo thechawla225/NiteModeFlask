@@ -11,7 +11,7 @@ uploadsPath = '/home/thechawla225/mysite/uploads/'
 app.config['UPLOAD_FOLDER'] = uploadsPath
 BASE_DIR = '/home/thechawla225/mysite/'
 
-# Check for working Webhook
+# Check for working Webhook again
 
 
 @app.route('/')
