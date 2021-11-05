@@ -1,0 +1,75 @@
+div {
+display: flex;
+justify-content: center;
+}
+video {
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    min-width: 100%;
+  }
+input[type = file]
+{
+    display: none;   
+
+}
+input[type=submit]
+{
+    
+    color: black;
+    background-color:whitesmoke;
+    height: 66px;
+    width: 250px;
+    font-size: 28px;
+    font-family: sans-serif;
+    text-align: center;
+    margin-left: 10px;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid whitesmoke;
+    
+    
+    
+}
+input[type=submit]:hover
+{
+    background-color: black ;
+    color: whitesmoke;
+    border: 2px solid white;
+}
+
+
+
+.custom-file-upload {
+    color: white;
+    background-color:black;
+    height: 62px;
+    width: 250px;
+    font-size: 28px;
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid whitesmoke;
+
+}
+.custom-file-upload:hover
+{
+    background-color: whitesmoke;
+    color: black;
+    border: 2px solid white;
+}
+.logo{
+    display: inline-block;
+    width: 100%;
+}
+
+.icon, .text {
+    display:inline;
+}
+
+.text{
+    margin-left:10px;
+} 
