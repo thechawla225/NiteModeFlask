@@ -1,75 +1,114 @@
 div {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 video {
-    right: 0;
-    bottom: 0;
-    min-height: 100%;
-    min-width: 100%;
-  }
-input[type = file]
-{
-    display: none;   
-
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  min-width: 100%;
 }
-input[type=submit]
-{
-    
-    color: black;
-    background-color:whitesmoke;
-    height: 66px;
-    width: 250px;
-    font-size: 28px;
-    font-family: sans-serif;
-    text-align: center;
-    margin-left: 10px;
-    outline: none;
-    cursor: pointer;
-    border: 1px solid whitesmoke;
-    
-    
-    
+input[type="file"] {
+  display: none;
 }
-input[type=submit]:hover
-{
-    background-color: black ;
-    color: whitesmoke;
-    border: 2px solid white;
+input[type="submit"] {
+  color: black;
+  background-color: whitesmoke;
+  height: 66px;
+  width: 250px;
+  font-size: 28px;
+  font-family: sans-serif;
+  text-align: center;
+  margin-left: 10px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid whitesmoke;
 }
-
-
+input[type="submit"]:hover {
+  background-color: black;
+  color: whitesmoke;
+  border: 2px solid white;
+  font-family: "proxima_nova_rgregular", Helvetica, Arial, sans-serif;
+}
 
 .custom-file-upload {
-    color: white;
-    background-color:black;
-    height: 62px;
-    width: 250px;
-    font-size: 28px;
-    font-family: sans-serif;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border: 2px solid whitesmoke;
-
+  color: white;
+  background-color: black;
+  height: 62px;
+  width: 250px;
+  font-size: 28px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid whitesmoke;
 }
-.custom-file-upload:hover
-{
-    background-color: whitesmoke;
-    color: black;
-    border: 2px solid white;
+.custom-file-upload:hover {
+  background-color: whitesmoke;
+  color: black;
+  border: 2px solid white;
 }
-.logo{
-    display: inline-block;
-    width: 100%;
+.logo {
+  display: inline-block;
+  width: 100%;
 }
 
-.icon, .text {
-    display:inline;
+.icon,
+.text {
+  display: inline;
 }
 
-.text{
-    margin-left:10px;
-} 
+.text {
+  margin-left: 10px;
+}
+
+@font-face {
+  font-family: "proxima_nova_rgregular";
+  src: url("https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot");
+  src: url("https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://litmus.com/fonts/Emails/proximanova-regular-webfont.woff")
+      format("woff"),
+    url("https://litmus.com/fonts/Emails/proximanova-regular-webfont.ttf")
+      format("truetype"),
+    url("https://litmus.com/fonts/Emails/proximanova-regular-webfont.svg#proxima_nova_rgregular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "proxima_nova_rgbold";
+  src: url("https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot");
+  src: url("https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff")
+      format("woff"),
+    url("https://litmus.com/fonts/Emails/proximanova-bold-webfont.ttf")
+      format("truetype"),
+    url("https://litmus.com/fonts/Emails/proximanova-bold-webfont.svg#proxima_nova_rgbold")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "adelle_rgregular";
+  src: url("https://litmus.com/fonts/Emails/adelle_reg-webfont.eot");
+  src: url("https://litmus.com/fonts/Emails/adelle_reg-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://litmus.com/fonts/Emails/adelle_reg-webfont.woff")
+      format("woff"),
+    url("https://litmus.com/fonts/Emails/adelle_reg-webfont.ttf")
+      format("truetype"),
+    url("https://litmus.com/fonts/Emails/adelle_reg-webfont.svg#adelle_rgregular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "proxima_nova_rgregular", Helvetica, Arial, sans-serif;
+}
+h1 {
+  font-family: "proxima_nova_rgbold", Helvetica, Arial, sans-serif;
+}
