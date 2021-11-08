@@ -56,7 +56,7 @@ Want to contribute? Great!
 ```sh
 pip install -r requirements.txt
 ```
-Then go to the project directory containing 'manage.py', open cmd and:
+Then go to the project directory containing 'app.py', open cmd and:
 
 ```sh
 python app.py 
