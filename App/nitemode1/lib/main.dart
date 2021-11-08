@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeumorphicApp(
-      title: 'Flutter Demo',
+      title: 'Nite Mode',
       theme: NeumorphicThemeData(
         baseColor: Color(0xFFFFFFFF),
-        lightSource: LightSource.topLeft,
+        lightSource: LightSource.top,
         depth: 10,
       ),
       home: ShowCaseWidget(
@@ -43,7 +43,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   final keyOne = GlobalKey();
   final keyTwo = GlobalKey();
@@ -86,12 +86,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: const Color.fromARGB(44, 48, 59, 255),
+        backgroundColor: const Color.fromARGB(255, 44, 48, 59),
         appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [
-              customShowCase(
+              CustomShowCase(
                 mykey: keyOne,
                 desc: "Visit our Github",
                 child: IconButton(
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white, scale: 20),
             ),
             titleSpacing: 0.0,
-            title: customShowCase(
+            title: CustomShowCase(
               mykey: keyTwo,
               desc: "Visit our Website",
               child: GestureDetector(
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: [
               Container(height: size.height * 0.1),
-              customShowCase(
+              CustomShowCase(
                 mykey: keyThree,
                 desc: "Welcome to Nite Mode! Touch anywhere for the next step",
                 child: Image.asset('assets/images/astronaut.png',
@@ -138,14 +138,15 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  customShowCase(
+                  CustomShowCase(
                     mykey: key4,
                     desc: "You can pick a file here",
                     child: NeumorphicButton(
                         margin: const EdgeInsets.only(top: 12),
                         onPressed: () {},
                         style: NeumorphicStyle(
-                          lightSource: LightSource.topRight,
+                          depth: 2,
+                          lightSource: LightSource.top,
                           shape: NeumorphicShape.concave,
                           color: const Color.fromRGBO(43, 50, 59, 0),
                           boxShape: NeumorphicBoxShape.roundRect(
@@ -163,14 +164,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(
                     width: 30,
                   ),
-                  customShowCase(
+                  CustomShowCase(
                     mykey: key5,
                     desc: "Turn file to dark mode here",
                     child: NeumorphicButton(
                         margin: const EdgeInsets.only(top: 12),
                         onPressed: () {},
                         style: NeumorphicStyle(
-                          lightSource: LightSource.topRight,
+                          depth: 2,
+                          lightSource: LightSource.top,
                           shape: NeumorphicShape.concave,
                           color: Colors.white,
                           boxShape: NeumorphicBoxShape.roundRect(
@@ -239,12 +241,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class customShowCase extends StatelessWidget {
+class CustomShowCase extends StatelessWidget {
   final Widget child;
   final String desc;
   final GlobalKey mykey;
 
-  const customShowCase(
+  const CustomShowCase(
       {required this.child, required this.desc, required this.mykey});
 
   @override
