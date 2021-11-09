@@ -37,6 +37,7 @@ Nite Mode uses a number of open source projects to work properly:
 
 <ul>
   <li><a href = 'https://github.com/pallets/flask'> Flask <a> </li>
+    <li><a href = 'https://github.com/flutter/flutter'> Flutter <a> </li>
   <li><a href = 'https://github.com/scanny/python-pptx'> Python-pptx <a> </li>
   <li><a href = 'https://github.com/pankajr141/pdf2jpg'> pdf2jpg <a> </li>
   <li><a href = 'https://github.com/josch/img2pdf'> img2pdf <a> </li>
