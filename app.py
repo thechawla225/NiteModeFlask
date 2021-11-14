@@ -11,8 +11,6 @@ uploadsPath = '/home/thechawla225/mysite/uploads/'
 app.config['UPLOAD_FOLDER'] = uploadsPath
 BASE_DIR = '/home/thechawla225/mysite/'
 
-# Check for working Webhook again and again and again
-
 
 @app.route('/')
 def hello_world():
@@ -52,12 +50,54 @@ def upload_file():
         return send_file(path_to_file)
 
 
+@app.route('/uploaderMobile', methods=['GET', 'POST'])
+def upload_file_mobile():
+    if request.method == 'POST':
+        f = request.files['file']
+
+        # Save File
+        f.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+
+        # PDF to images
+        DarkModePdf.pdf_to_images(f.filename, uploadsPath, uploadsPath)
+
+        # Merge Images to pdf
+        num_pages = DarkModePdf.image_to_pdf(
+            f.filename, uploadsPath, uploadsPath)
+
+        # merge pdfs:
+        merger = PdfFileMerger()
+        for i in range(num_pages):
+            name = uploadsPath + "temp" + str(i) + ".pdf"
+            with open(name, "rb") as file:
+                merger.append(file)
+
+        merger.write(BASE_DIR + 'DarkFile.pdf')
+        merger.close()
+
+        return 0
+
+
+@app.route('/receiveMobile', methods=['GET', 'POST'])
+def sendFileMobile():
+    path_to_file = os.path.join(BASE_DIR, 'DarkFile.pdf')
+    shutil.rmtree(uploadsPath)
+    if not os.path.exists(uploadsPath):
+        os.makedirs(uploadsPath)
+    return send_file(path_to_file)
+
+
+@app.route('/sendApk', methods=['GET', 'POST'])
+def send_Apk():
+    path_to_file = os.path.join(BASE_DIR, 'templates/NiteMode.apk')
+    return send_file(path_to_file)
+
+
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        repo = git.Repo('https://github.com/thechawla225/NiteModeFlask')
-        origin = repo.remotes.origin
-        origin.pull()
+        git.cmd.Git().pull('https://github.com/thechawla225/NiteModeFlask', 'main')
         return 'Updated PythonAnywhere successfully', 200
 
     else:
