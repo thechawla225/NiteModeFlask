@@ -6,8 +6,17 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'api.dart';
+import 'dart:async';
+import 'dart:isolate';
+import 'dart:ui';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize();
   runApp(const MyApp());
 }
 
@@ -18,11 +27,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicApp(
       title: 'Nite Mode',
-      theme: NeumorphicThemeData(
-        baseColor: Color(0xFFFFFFFF),
-        lightSource: LightSource.top,
-        depth: 10,
-      ),
       home: ShowCaseWidget(
         builder: Builder(
           builder: (_) => MyHomePage(title: "Nite Mode"),
@@ -50,6 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
   final keyThree = GlobalKey();
   final key4 = GlobalKey();
   final key5 = GlobalKey();
+  bool isFileChosen = false;
+  int progress = 0;
+  String? myFile;
+  String? myFileName;
+  ReceivePort recPort = ReceivePort();
 
   callShowCase() async {
     final SharedPreferences prefs = await _prefs;
@@ -66,8 +75,39 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    super.initState();
+    IsolateNameServer.registerPortWithName(
+        recPort.sendPort, 'donwloadingvideo');
+    recPort.listen((message) {
+      progress = message;
+    });
+    FlutterDownloader.registerCallback(downloadCallback);
     callShowCase();
+
+    super.initState();
+  }
+
+  static downloadCallback(id, status, progress) {
+    SendPort? sendPort = IsolateNameServer.lookupPortByName('donwloadingvideo');
+    sendPort!.send(progress);
+  }
+
+  getFile() async {
+    final permission = await Permission.storage.request();
+
+    if (permission.isGranted) {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+      if (result != null) {
+        myFile = result.files.single.path;
+        setState(() {
+          myFileName = result.files.single.name;
+        });
+      } else {
+        // User canceled the picker
+      }
+    }
   }
 
   openLink(url) async {
@@ -143,7 +183,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     desc: "You can pick a file here",
                     child: NeumorphicButton(
                         margin: const EdgeInsets.only(top: 12),
-                        onPressed: () {},
+                        onPressed: () {
+                          getFile();
+                        },
                         style: NeumorphicStyle(
                           depth: 2,
                           lightSource: LightSource.top,
@@ -169,7 +211,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     desc: "Turn file to dark mode here",
                     child: NeumorphicButton(
                         margin: const EdgeInsets.only(top: 12),
-                        onPressed: () {},
+                        onPressed: () {
+                          if (myFile == null) {
+                            showToast("Please select a file");
+                          } else {
+                            pdfSender(myFile);
+                          }
+                        },
                         style: NeumorphicStyle(
                           depth: 2,
                           lightSource: LightSource.top,
@@ -189,7 +237,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              Container(height: size.height * 0.15),
+              Container(height: 20),
+              Text(myFileName ?? "",
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontFamily: 'ProximaNova')),
+              Container(height: size.height * 0.13),
               RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
